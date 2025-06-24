@@ -7,6 +7,7 @@ import 'kalend/dist/styles/index.css';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { listaDeEventosState } from '../../state/atom';
 import { IEvento } from '../../interfaces/IEvento';
+import useAtualizarEvento from '../../state/hooks/useAtualizarEvento';
 
 interface IKalendEvento {
     id?: number
@@ -19,6 +20,7 @@ interface IKalendEvento {
 const Calendario: React.FC = () => {
 
     const setListaDeEventos = useSetRecoilState<IEvento[]>(listaDeEventosState)
+    const atualizarEvento = useAtualizarEvento()
 
     const eventosKalend = new Map<string, IKalendEvento[]>();
     const eventos = useRecoilValue(listaDeEventosState)
@@ -48,10 +50,8 @@ const Calendario: React.FC = () => {
             }
             eventoAtualizado.inicio = new Date(kalendEventoAtualizado.startAt)
             eventoAtualizado.fim = new Date(kalendEventoAtualizado.endAt)
-            setListaDeEventos(listaAntiga => {
-                const indice = listaAntiga.findIndex(evt => evt.id === evento.id)
-                return [...listaAntiga.slice(0, indice), eventoAtualizado, ...listaAntiga.slice(indice + 1)]
-            })
+            atualizarEvento(eventoAtualizado)
+
         }
     };
 
