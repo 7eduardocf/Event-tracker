@@ -6,7 +6,6 @@ import Kalend, { CalendarEvent, CalendarView, OnEventDragFinish } from 'kalend'
 import 'kalend/dist/styles/index.css';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { listaDeEventosState } from '../../state/atom';
-import { IEvento } from '../../interfaces/IEvento';
 import useAtualizarEvento from '../../state/hooks/useAtualizarEvento';
 
 interface IKalendEvento {
@@ -19,7 +18,6 @@ interface IKalendEvento {
 
 const Calendario: React.FC = () => {
 
-    const setListaDeEventos = useSetRecoilState<IEvento[]>(listaDeEventosState)
     const atualizarEvento = useAtualizarEvento()
 
     const eventosKalend = new Map<string, IKalendEvento[]>();
