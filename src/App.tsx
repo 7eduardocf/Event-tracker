@@ -47,10 +47,8 @@ function App() {
     //     // setEventos([...eventos.filter(evento => evento.id !== id)])
     // }
 
-    const aplicarFiltro = (data: Date | null) => {
-        setFiltro(data)
-    }
 
+    
     // const filtrados = !filtro
     //     // ? eventos
     //     // : eventos.filter((evento) =>
@@ -66,9 +64,7 @@ function App() {
                     </Card>
                     <hr />
                     <Card>
-                        <ListaDeEventos
-                            aoFiltroAplicado={aplicarFiltro} 
-                            />
+                        <ListaDeEventos/>
                     </Card>
                 </div>
                 <div className={style.Coluna}>
