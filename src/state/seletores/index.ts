@@ -1,7 +1,8 @@
 import { selector } from "recoil";
 import { filtroDeEventos, listaDeEventosState } from "../atom";
+import { IEvento } from "../../interfaces/IEvento";
 
-const eventosFiltradosState = selector({
+export const eventosFiltradosState = selector({
     key:"eventosFiltradosState",
     get: ({get})=>{
         const filtro = get(filtroDeEventos)
@@ -17,4 +18,15 @@ const eventosFiltradosState = selector({
     }
 })
 
-export default eventosFiltradosState
+export const eventosAsync = selector({
+    key:"eventosAsync",
+    get: async()=>{
+        const respostaHttp = await fetch("http://localhost:3001/eventos")
+        const eventosJson:IEvento[] = await respostaHttp.json()
+        return eventosJson.map(evento=>({
+            ...evento,
+            inicio: new Date(evento.inicio),
+            fim: new Date(evento.fim)
+        }))
+    }
+})

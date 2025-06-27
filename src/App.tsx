@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import style from './App.module.scss';
 import Card from './components/Card';
 import Formulario from './components/Formulario';
@@ -57,7 +57,8 @@ function App() {
 
     return (
         <RecoilRoot>
-            <div className={style.App}>
+            <Suspense fallback="Esta carregando">
+                <div className={style.App}>
                 <div className={style.Coluna}>
                     <Card>
                         <Formulario aoSalvar={adicionarEvento} />
@@ -71,6 +72,7 @@ function App() {
                     <Calendario/>
                 </div>
             </div>
+            </Suspense>
         </RecoilRoot>
     );
 }
