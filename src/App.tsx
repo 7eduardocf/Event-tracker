@@ -6,6 +6,7 @@ import { IEvento } from './interfaces/IEvento';
 import Calendario from './components/Calendario';
 import ListaDeEventos from './components/ListaDeEventos';
 import { RecoilRoot } from 'recoil';
+import DebugObserver from './components/DebugObserver';
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
 
     return (
         <RecoilRoot>
+            <DebugObserver/>
             <Suspense fallback="Esta carregando">
                 <div className={style.App}>
                 <div className={style.Coluna}>
